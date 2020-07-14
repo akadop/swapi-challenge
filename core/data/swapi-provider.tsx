@@ -18,7 +18,7 @@ const initialSwapiState: SwapiState = {
   films: []
 }
 
-const SwapiContext = React.createContext<{
+export const SwapiContext = React.createContext<{
   state: SwapiState
   dispatch: React.Dispatch<SwapiActions>
 }>({
