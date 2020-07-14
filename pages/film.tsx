@@ -2,18 +2,31 @@ import React from 'react'
 import { SwapiContext } from '../core/data/swapi-provider'
 import { Film } from '../core/data/swapi-types'
 import useSWR from 'swr'
+import { ActionTypes } from '../core/data/action-reducer'
 
 const FilmPage: React.FC = () => {
   const [film, setFilm] = React.useState(null)
   const { data } = useSWR('SWAPI_ALL_FILMS_ENDPOINT')
+  const { dispatch, state } = React.useContext(SwapiContext)
 
   const {
     state: { selectedFilm, selectedPerson }
   } = React.useContext(SwapiContext)
 
   React.useEffect(() => {
-    if (selectedFilm !== null && data) {
-      const selected = (data.results as Film[]).find(film => film.url === selectedFilm)
+    if (data) {
+      dispatch({
+        type: ActionTypes.AddFilms,
+        payload: {
+          films: data.results
+        }
+      })
+    }
+  }, [data])
+
+  React.useEffect(() => {
+    if (selectedFilm !== null && state.films.length > 0) {
+      const selected = state.films.find(film => film.url === selectedFilm)
       setFilm(selected)
     }
   }, [selectedFilm, data])

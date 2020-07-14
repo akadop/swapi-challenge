@@ -7,18 +7,13 @@ import { SwapiContext } from '../core/data/swapi-provider'
 
 const IndexPage: Next.NextPage = () => {
   const { data } = useSWR('SWAPI_ALL_PEOPLE_ENDPOINT')
-
   const { dispatch, state } = React.useContext(SwapiContext)
 
   React.useEffect(() => {
-    // console.log(peopleData.data.results)
     if (data) {
       dispatch({
         type: ActionTypes.AddData,
-        payload: {
-          films: [],
-          people: data.results
-        }
+        payload: { people: data.results }
       })
     }
   }, [data])

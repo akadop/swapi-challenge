@@ -30,7 +30,11 @@ export const Person: React.FC<PersonProps> = ({ person }) => {
         {films.length > 0 &&
           films.map(film => (
             <Link href={'/film'} as={'/film'} key={film}>
-              <div style={{ width: '100%' }} onClick={() => handleClick(person.name, film)}>
+              <div
+                style={{ width: '100%' }}
+                data-testid={`test+${film}`}
+                onClick={() => handleClick(person.name, film)}
+              >
                 <a>{film}</a>
               </div>
             </Link>

@@ -14,6 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 export enum ActionTypes {
   AddData = 'ADD_DATA',
+  AddFilms = 'ADD_FILMS',
   RemoveSelected = 'REMOVE_SELECTED',
   SetNextPage = 'SET_NEXT_PAGE',
   SetSelected = 'SET_SELECTED'
@@ -22,13 +23,13 @@ export enum ActionTypes {
 type SwapiPayload = {
   [ActionTypes.SetSelected]: Pick<SwapiState, 'selectedPerson' | 'selectedFilm'>
   [ActionTypes.SetNextPage]: { nextPersonPage: string }
+  [ActionTypes.AddFilms]: { films: Film[] }
   [ActionTypes.RemoveSelected]: {
     selectedPerson: null
     selectedFilm: null
   }
   [ActionTypes.AddData]: {
     people: People[]
-    films: Film[]
   }
 }
 
@@ -39,8 +40,13 @@ export const swapiReducer = (state: SwapiState, action: SwapiActions) => {
     case ActionTypes.AddData:
       return {
         ...state,
-        films: Array.from(new Set(state.films.concat(action.payload.films))),
         people: Array.from(new Set(state.people.concat(action.payload.people)))
+      }
+
+    case ActionTypes.AddFilms:
+      return {
+        ...state,
+        films: Array.from(new Set(state.films.concat(action.payload.films)))
       }
 
     case ActionTypes.SetNextPage:

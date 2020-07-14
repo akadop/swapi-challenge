@@ -19,6 +19,7 @@
     "format": "prettier --write --ignore-path .gitignore \"*/**/*.{js,jsx,ts,tsx}\"",
     "lint": "tslint pages src",
     "start": "next start",
+    "test": "jest",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "@types/react-content-loader": "4.0.0",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.1",
+    "babel-jest": "26.1.0",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-polished": "1.1.0",
     "babel-plugin-styled-components": "^1.10.7",
