@@ -29,7 +29,7 @@ const FilmPage: React.FC = () => {
       const selected = state.films.find(film => film.url === selectedFilm)
       setFilm(selected)
     }
-  }, [selectedFilm, data])
+  }, [selectedFilm, data, state.films])
 
   if (selectedPerson !== null && film !== null) {
     return (

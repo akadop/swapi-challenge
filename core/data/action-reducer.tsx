@@ -40,13 +40,13 @@ export const swapiReducer = (state: SwapiState, action: SwapiActions) => {
     case ActionTypes.AddData:
       return {
         ...state,
-        people: Array.from(new Set(state.people.concat(action.payload.people)))
+        people: [...new Set([...state.people, ...action.payload.people])]
       }
 
     case ActionTypes.AddFilms:
       return {
         ...state,
-        films: Array.from(new Set(state.films.concat(action.payload.films)))
+        films: [...new Set([...state.films, ...action.payload.films])]
       }
 
     case ActionTypes.SetNextPage:

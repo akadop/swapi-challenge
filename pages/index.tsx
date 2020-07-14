@@ -19,7 +19,7 @@ const IndexPage: Next.NextPage = () => {
   }, [data])
 
   return (
-    <div>{state.people.length > 0 && state.people.map(person => <Person key={person.name} person={person} />)}</div>
+    <div>{state.people.length > 0 && state.people.map((person, index) => <Person key={index} person={person} />)}</div>
   )
 }
 
