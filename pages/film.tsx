@@ -12,13 +12,13 @@ const FilmPage: React.FC = () => {
   } = React.useContext(SwapiContext)
 
   React.useEffect(() => {
-    if (selectedFilm !== null && data.results) {
+    if (selectedFilm !== null && data) {
       const selected = (data.results as Film[]).find(film => film.url === selectedFilm)
       setFilm(selected)
     }
-  }, [selectedFilm])
+  }, [selectedFilm, data])
 
-  if (selectedPerson !== null) {
+  if (selectedPerson !== null && film !== null) {
     return (
       <React.Fragment>
         <div style={{ width: '100%' }}>
