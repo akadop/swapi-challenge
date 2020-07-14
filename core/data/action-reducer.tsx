@@ -39,8 +39,8 @@ export const swapiReducer = (state: SwapiState, action: SwapiActions) => {
     case ActionTypes.AddData:
       return {
         ...state,
-        films: state.films.concat(action.payload.films),
-        people: state.people.concat(action.payload.people)
+        films: Array.from(new Set(state.films.concat(action.payload.films))),
+        people: Array.from(new Set(state.people.concat(action.payload.people)))
       }
 
     case ActionTypes.SetNextPage:
