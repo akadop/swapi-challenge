@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-unfetch'
-import useSWR from 'swr'
 import { Film, People } from './swapi-types'
 
 const endpoints = {
@@ -14,26 +13,4 @@ export async function swapiFetcher<V = AvailableEndpoints>(url: keyof typeof end
   return await fetch(endpoints[url], {
     method: 'GET'
   }).then(res => res.json())
-}
-
-export function usePeople() {
-  const { data } = useSWR('SWAPI_ALL_PEOPLE_ENDPOINT')
-  console.log(data)
-
-  return { people: [] }
-
-  // const results = data.results && data.results.length > 0 ? data.results : []
-  // return {
-  //   people: results as People[]
-  // }
-}
-
-export function useFilms() {
-  const { data } = useSWR('SWAPI_ALL_FILMS_ENDPOINT')
-  console.log(data)
-  return { films: [] }
-  // const results = data.results && data.results.length > 0 ? data.results : []
-  // return {
-  //   films: results as Film[]
-  // }
 }

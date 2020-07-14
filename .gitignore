@@ -108,3 +108,4 @@ dist
 settings.json
 .vscode
 .DS_Store
+.now
